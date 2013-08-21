@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace workmanship_rest_net.Models
 {
@@ -16,7 +17,8 @@ namespace workmanship_rest_net.Models
         public int Stillingsprosent { get; set; }
         public string EpostAdr { get; set; }
 
-        //public virtual Collection<Prosjekt> Prosjekter { get; set; }
+        [JsonIgnore]
+        public virtual Collection<Prosjekt> Prosjekter { get; set; }
 
         public Bruker()
         {

@@ -9,24 +9,27 @@ using workmanship_rest_net.Repositories;
 
 namespace workmanship_rest_net.Controllers
 {
-    public class ProsjekterController : ApiController
+    public class ProsjektController : ApiController
     {
-        private readonly ProsjekterRepository _repository;
+        private readonly IProsjektRepository _prosjektRepository;
+        private readonly IBrukerRepository _brukerRepository;
 
-        public ProsjekterController()
+        public ProsjektController()
         {
-            _repository = new ProsjekterRepository();
+            _prosjektRepository = new ProsjektRepository();
+            _brukerRepository = new BrukerRepository();
         }
 
-        public ProsjekterController(ProsjekterRepository repository)
+        public ProsjektController(IProsjektRepository prosjektRepository, IBrukerRepository brukerRepository)
         {
-            _repository = repository;
+            _prosjektRepository = prosjektRepository;
+            _brukerRepository = brukerRepository;
         }
 
         // GET api/prosjekter
         public HttpResponseMessage GetProsjekter()
         {
-            var prosjekter = _repository.GetAlle();
+            var prosjekter = _prosjektRepository.GetAlle();
 
             return Request.CreateResponse(HttpStatusCode.OK, prosjekter);
         }
@@ -34,7 +37,7 @@ namespace workmanship_rest_net.Controllers
         // GET api/prosjekter/5
         public HttpResponseMessage GetProsjekt(int id)
         {
-            var prosjekt = _repository.Get(id);
+            var prosjekt = _prosjektRepository.Get(id);
 
             if (prosjekt == null)
             {
@@ -47,14 +50,14 @@ namespace workmanship_rest_net.Controllers
         // GET api/brukere/1/prosjekter/
         public HttpResponseMessage GetProsjektForBruker(int brukerId)
         {
-            // TODO: Sjekke om bruker eksisterer
+            var bruker = _brukerRepository.Get(brukerId);
 
-            /*if (bruker == null)
+            if (bruker == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
-            }*/
+            }
 
-            var prosjekter = _repository.GetProsjekterForBruker(brukerId);
+            var prosjekter = _prosjektRepository.GetProsjekterForBruker(brukerId);
 
             return Request.CreateResponse(HttpStatusCode.OK, prosjekter);
         }
@@ -64,7 +67,7 @@ namespace workmanship_rest_net.Controllers
         {
             if (prosjekt != null)
             {
-                bool suksess = _repository.LeggTil(prosjekt);
+                bool suksess = _prosjektRepository.LeggTil(prosjekt);
 
                 if (suksess)
                 {
@@ -82,7 +85,7 @@ namespace workmanship_rest_net.Controllers
         {
             if (id == prosjekt.ProsjektNr)
             {
-                bool suksess = _repository.Oppdater(prosjekt);
+                bool suksess = _prosjektRepository.Oppdater(prosjekt);
 
                 if (suksess)
                 {
@@ -100,14 +103,14 @@ namespace workmanship_rest_net.Controllers
         // DELETE api/prosjekter/5
         public HttpResponseMessage DeleteProsjekt(int id)
         {
-            var prosjekt = _repository.Get(id);
+            var prosjekt = _prosjektRepository.Get(id);
 
             if (prosjekt == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            _repository.Slett(prosjekt);
+            _prosjektRepository.Slett(prosjekt);
 
             return Request.CreateResponse(HttpStatusCode.OK, prosjekt);
         }
