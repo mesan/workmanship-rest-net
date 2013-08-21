@@ -18,26 +18,12 @@ namespace workmanship_rest_net.Tests.ControllerTests
 {
     public class BaseControllerTest
     {
-        //private HttpServer _server;
         private static HttpSelfHostServer _server;
         private static HttpClient _client;
         private const string Url = "http://localhost:51234/";
 
         public static void Start()
         {
-            /*var config = new HttpConfiguration();
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-                );
-
-            config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
-
-            _server = new HttpServer(config);
-            _client = new HttpClient();
-            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));*/
 
             var config = new HttpSelfHostConfiguration(Url);
 
