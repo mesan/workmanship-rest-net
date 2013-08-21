@@ -15,5 +15,30 @@ namespace workmanship_rest_net.Models
 
         [JsonIgnore]
         public virtual Collection<Bruker> Brukere { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            var p = (Prosjekt) obj;
+            return Intern == p.Intern && ProsjektNavn == p.ProsjektNavn && ProsjektNr == p.ProsjektNr;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int i = 23;
+                int hash = 17;
+                hash *= i + Intern.GetHashCode();
+                hash *= i + ProsjektNavn.GetHashCode();
+                hash *= i + ProsjektNr.GetHashCode();
+
+                return hash;
+            }
+        }
     }
 }

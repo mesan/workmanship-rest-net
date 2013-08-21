@@ -87,6 +87,7 @@
     <Compile Include="AttributeRoutingConfig.cs" />
     <Compile Include="ControllerTests\BaseControllerTest.cs" />
     <Compile Include="ControllerTests\BrukerControllerTest.cs" />
+    <Compile Include="ControllerTests\ProsjektControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
