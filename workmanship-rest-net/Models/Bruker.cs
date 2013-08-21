@@ -25,5 +25,37 @@ namespace workmanship_rest_net.Models
             HarPlussBetalt = true;
             Stillingsprosent = 100;
         }
+
+        // override object.Equals
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            var b = (Bruker) obj;
+
+            return AnsattNummer == b.AnsattNummer && BrukerId == b.BrukerId && FulltNavn == b.FulltNavn &&
+                   HarPlussBetalt == b.HarPlussBetalt && KontoNummer == b.KontoNummer &&
+                   Stillingsprosent == b.Stillingsprosent;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int i = 23;
+                int hash = 17;
+                hash *= i + AnsattNummer.GetHashCode();
+                hash *= i + BrukerId.GetHashCode();
+                hash *= i + FulltNavn.GetHashCode();
+                hash *= i + HarPlussBetalt.GetHashCode();
+                hash *= i + KontoNummer.GetHashCode();
+                hash *= i + Stillingsprosent.GetHashCode();
+
+                return hash;
+            }
+        }
     }
 }
