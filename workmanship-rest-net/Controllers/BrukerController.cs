@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AttributeRouting.Web.Http;
 using workmanship_rest_net.Models;
 using workmanship_rest_net.Repositories;
 
@@ -26,7 +27,7 @@ namespace workmanship_rest_net.Controllers
             _prosjektRepository = prosjektRepository;
         }
 
-        // GET api/brukere
+        [GET("api/brukere")]
         public HttpResponseMessage GetBrukere()
         {
             var brukere = _brukerRepository.GetAlle();
@@ -34,7 +35,7 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, brukere);
         }
 
-        // GET api/brukere/5
+        [GET("api/brukere/{id}", RouteName = "GetBrukerMedId")]
         public HttpResponseMessage GetBruker(int id)
         {
             var bruker = _brukerRepository.Get(id);
@@ -47,7 +48,7 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, bruker);
         }
 
-        // GET api/prosjekter/1/brukere
+        [GET("api/prosjekter/{prosjektId}/brukere")]
         public HttpResponseMessage GetBrukerForProsjekt(int prosjektId)
         {
             var prosjekt = _prosjektRepository.Get(prosjektId);
@@ -62,7 +63,7 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, brukere);
         }
 
-        // POST api/brukere
+        [POST("api/brukere")]
         public HttpResponseMessage PostBruker(Bruker bruker)
         {
             if (bruker != null)
@@ -72,7 +73,7 @@ namespace workmanship_rest_net.Controllers
                 if (suksess)
                 {
                     HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, bruker);
-                    response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = bruker.AnsattNummer }));
+                    response.Headers.Location = new Uri(Url.Link("GetBrukerMedId", new { id = bruker.AnsattNummer }));
                     return response;
                 }
             }
@@ -80,7 +81,7 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        // PUT api/brukere/5
+        [PUT("api/brukere/{id}")]
         public HttpResponseMessage PutBruker(int id, Bruker bruker)
         {
             if (id == bruker.AnsattNummer)
@@ -98,7 +99,7 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        // DELETE api/brukere/5
+        [DELETE("api/brukere/{id}")]
         public HttpResponseMessage DeleteBruker(int id)
         {
             var bruker = _brukerRepository.Get(id);

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Routing;
+using AttributeRouting;
+using AttributeRouting.Web.Http;
 using workmanship_rest_net.Models;
 using workmanship_rest_net.Repositories;
 
@@ -26,7 +29,7 @@ namespace workmanship_rest_net.Controllers
             _brukerRepository = brukerRepository;
         }
 
-        // GET api/prosjekter
+        [GET("api/prosjekter")]
         public HttpResponseMessage GetProsjekter()
         {
             var prosjekter = _prosjektRepository.GetAlle();
@@ -34,7 +37,7 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, prosjekter);
         }
 
-        // GET api/prosjekter/5
+        [GET("api/prosjekter/{id}", RouteName = "GetProsjektMedId")]
         public HttpResponseMessage GetProsjekt(int id)
         {
             var prosjekt = _prosjektRepository.Get(id);
@@ -47,7 +50,7 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, prosjekt);
         }
 
-        // GET api/brukere/1/prosjekter/
+        [GET("api/brukere/{brukerId}/prosjekter")]
         public HttpResponseMessage GetProsjektForBruker(int brukerId)
         {
             var bruker = _brukerRepository.Get(brukerId);
@@ -62,7 +65,7 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, prosjekter);
         }
 
-        // POST api/prosjekter
+        [POST("api/prosjekter")]
         public HttpResponseMessage Postprosjekt(Prosjekt prosjekt)
         {
             if (prosjekt != null)
@@ -72,7 +75,7 @@ namespace workmanship_rest_net.Controllers
                 if (suksess)
                 {
                     HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, prosjekt);
-                    response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = prosjekt.ProsjektNr }));
+                    response.Headers.Location = new Uri(Url.Link("GetProsjektMedId", new { id = prosjekt.ProsjektNr }));
                     return response;
                 }
             }
@@ -80,7 +83,7 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        // PUT api/prosjekter/5
+        [PUT("api/prosjekter/{id}")]
         public HttpResponseMessage PutBruker(int id, Prosjekt prosjekt)
         {
             if (id == prosjekt.ProsjektNr)
@@ -100,7 +103,7 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        // DELETE api/prosjekter/5
+        [DELETE("api/prosjekter/{id}")]
         public HttpResponseMessage DeleteProsjekt(int id)
         {
             var prosjekt = _prosjektRepository.Get(id);
