@@ -27,6 +27,9 @@ namespace workmanship_rest_net.Controllers
             _prosjektRepository = prosjektRepository;
         }
 
+        /// <summary>
+        /// Henter alle brukere.
+        /// </summary>
         [GET("api/brukere")]
         public HttpResponseMessage GetBrukere()
         {
@@ -35,6 +38,10 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, brukere);
         }
 
+        /// <summary>
+        /// Henter bruker med angitt AnsattNummer.
+        /// </summary>
+        /// <param name="id">AnsattNummer</param>
         [GET("api/brukere/{id}", RouteName = "GetBrukerMedId")]
         public HttpResponseMessage GetBruker(int id)
         {
@@ -48,6 +55,10 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, bruker);
         }
 
+        /// <summary>
+        /// Henter brukere for prosjekt med angitt ProsjektNr
+        /// </summary>
+        /// <param name="prosjektId">ProsjektNr</param>
         [GET("api/prosjekter/{prosjektId}/brukere")]
         public HttpResponseMessage GetBrukerForProsjekt(int prosjektId)
         {
@@ -63,6 +74,10 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, brukere);
         }
 
+        /// <summary>
+        /// Oppretter en ny bruker
+        /// </summary>
+        /// <param name="bruker">Bruker som skal opprettes</param>
         [POST("api/brukere")]
         public HttpResponseMessage PostBruker(Bruker bruker)
         {
@@ -81,6 +96,11 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
+        /// <summary>
+        /// Oppdaterer en bruker
+        /// </summary>
+        /// <param name="id">AnsattNummer</param>
+        /// <param name="bruker">Bruker som skal oppdateres</param>
         [PUT("api/brukere/{id}")]
         public HttpResponseMessage PutBruker(int id, Bruker bruker)
         {
@@ -99,6 +119,10 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
+        /// <summary>
+        /// Sletter bruker med angitt AnsattNummer
+        /// </summary>
+        /// <param name="id">AnsattNummer</param>
         [DELETE("api/brukere/{id}")]
         public HttpResponseMessage DeleteBruker(int id)
         {

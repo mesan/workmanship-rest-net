@@ -29,6 +29,9 @@ namespace workmanship_rest_net.Controllers
             _brukerRepository = brukerRepository;
         }
 
+        /// <summary>
+        /// Henter alle prosjekter
+        /// </summary>
         [GET("api/prosjekter")]
         public HttpResponseMessage GetProsjekter()
         {
@@ -37,6 +40,10 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, prosjekter);
         }
 
+        /// <summary>
+        /// Henter prosjekt med angitt ProsjektNr
+        /// </summary>
+        /// <param name="id">ProsjektNr</param>
         [GET("api/prosjekter/{id}", RouteName = "GetProsjektMedId")]
         public HttpResponseMessage GetProsjekt(int id)
         {
@@ -50,6 +57,10 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, prosjekt);
         }
 
+        /// <summary>
+        /// Henter prosjekter for bruker med angitt AnsattNummer
+        /// </summary>
+        /// <param name="brukerId">AnsattNummer</param>
         [GET("api/brukere/{brukerId}/prosjekter")]
         public HttpResponseMessage GetProsjektForBruker(int brukerId)
         {
@@ -65,6 +76,10 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, prosjekter);
         }
 
+        /// <summary>
+        /// Oppretter et nytt prosjekt
+        /// </summary>
+        /// <param name="prosjekt">Prosjekt som skal opprettes</param>
         [POST("api/prosjekter")]
         public HttpResponseMessage Postprosjekt(Prosjekt prosjekt)
         {
@@ -83,6 +98,11 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
+        /// <summary>
+        /// Oppdaterer et prosjekt
+        /// </summary>
+        /// <param name="id">ProsjektNr</param>
+        /// <param name="prosjekt">Prosjekt som skal oppdateres</param>
         [PUT("api/prosjekter/{id}")]
         public HttpResponseMessage PutBruker(int id, Prosjekt prosjekt)
         {
@@ -103,6 +123,10 @@ namespace workmanship_rest_net.Controllers
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
+        /// <summary>
+        /// Sletter prosjekt med angitt ProsjektNr
+        /// </summary>
+        /// <param name="id">ProsjektNr</param>
         [DELETE("api/prosjekter/{id}")]
         public HttpResponseMessage DeleteProsjekt(int id)
         {
