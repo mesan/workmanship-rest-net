@@ -1,14 +1,14 @@
 workmanship-rest-net
 ====================
 
-For å komme i gang:
+For ï¿½ komme i gang:
 
-1. Kjør kommandoen: git clone https://github.com/mesan/workmanship-rest-net.git.
+1. Kjï¿½r kommandoen: git clone https://github.com/mesan/workmanship-rest-net.git.
 
-2. Aktiver NuGet Package Restore i Visual Studio hvis det ikke allerede er aktivert, se her for mer info http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages.
+2. Ã…pne solution i Visual Studio og aktiver NuGet Package Restore hvis det ikke allerede er aktivert, se her for mer info http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages.
 
-3. Kjør integrasjonstester for å sjekke at ting fungerer.
+3. Kjï¿½r integrasjonstester for ï¿½ sjekke at ting fungerer.
 
-4. Start server ved kjøre prosjektet workmansip-rest-net.
+4. Start server ved kjï¿½re prosjektet workmansip-rest-net.
 
-Nettleseren vil da startes, og vil vise Web Api Help Page som viser en oversikt over API-et. Hvis denne siden av en eller annen grunn ikke dukker opp automatisk så finnes den her: http://localhost:59356/help.
+Nettleseren vil da startes, og vil vise Web Api Help Page som viser en oversikt over API-et. Hvis denne siden av en eller annen grunn ikke dukker opp automatisk sï¿½ finnes den her: http://localhost:59356/help.
