@@ -159,7 +159,6 @@
     <Compile Include="Controllers\BrukerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProsjektController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Repositories\BrukerRepository.cs" />
     <Compile Include="Repositories\Data.cs" />
     <Compile Include="Global.asax.cs">

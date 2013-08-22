@@ -10,7 +10,8 @@ namespace workmanship_rest_net.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            //return View();
+            return RedirectToAction("Index", "Help");
         }
     }
 }
