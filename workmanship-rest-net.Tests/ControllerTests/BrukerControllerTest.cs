@@ -22,7 +22,7 @@ namespace workmanship_rest_net.Tests
         [ClassInitialize]
         public static void Setup(TestContext context)
         {
-            Start();
+            Start("51234");
         }
 
         [ClassCleanup]

@@ -45,7 +45,7 @@ namespace workmanship_rest_net.Repositories
 
             if (suksess)
             {
-                var brukerProsjekter = _dataSource.Prosjekter.Where(prosjekt => prosjekt.Brukere.Contains(bruker));
+                var brukerProsjekter = _dataSource.Prosjekter.Where(prosjekt => prosjekt.Brukere != null && prosjekt.Brukere.Contains(bruker));
 
                 foreach(var prosjekt in brukerProsjekter)
                 {

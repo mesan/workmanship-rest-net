@@ -18,7 +18,7 @@ namespace workmanship_rest_net.Tests.ControllerTests
         [ClassInitialize]
         public static void Setup(TestContext context)
         {
-            Start();
+            Start("52345");
         }
 
         [ClassCleanup]
